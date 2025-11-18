@@ -15,7 +15,10 @@ public class Zoo {
     }
 
     public void printAnimalList() {
-        System.out.println(animals);
+        for (int idx = 1; idx <= animals.size(); idx++) {
+            System.out.println(idx + ". " + animals.get(idx - 1).getName() + "(" + animals.get(idx - 1).getSpecies() + ", "
+                    + animals.get(idx - 1).getAge() + "살)");
+        }
     }
 
     public void playWithAnimal(int idx) {

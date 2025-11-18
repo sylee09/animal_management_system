@@ -6,7 +6,7 @@ public class Dog extends Animal {
 
     public Dog(String name, int age) {
         super(name, age);
-        this.species = "dog";
+        this.species = "강아지";
     }
 
     public String getSpecies() {

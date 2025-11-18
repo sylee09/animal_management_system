@@ -155,8 +155,8 @@ public class Main {
     }
 
     private void printAnimalSound() {
+        System.out.println("울음소리를 듣고싶은 동물을 선택하세요: ");
         printAnimalList();
-        System.out.print("울음소리를 듣고싶은 동물을 선택하세요: ");
         int idx=-1;
         try {
             idx = sc.nextInt() - 1;

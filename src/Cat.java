@@ -6,7 +6,7 @@ public class Cat extends Animal {
 
     public Cat(String name, int age) {
         super(name, age);
-        species = "cat";
+        species = "고양이";
     }
 
     public String getSpecies() {
