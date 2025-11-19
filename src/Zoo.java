@@ -90,17 +90,21 @@ public class Zoo {
     }
 
     public void printStatisticsInfo() {
+        if (animals.isEmpty()) {
+            System.out.println("현재 동물원에 동물이 없습니다.");
+            return;
+        }
         HashMap<String, Integer> map = new HashMap<>();
         int totalAnimalCount = animals.size();
         double avgHappiness = 0;
         Animal happiestAnimal = null;
-        int topHappyPoint = 0;
+        int topHappyPoint = Integer.MIN_VALUE;
 
         ArrayList<Animal> hungryAnimals = new ArrayList<>();
         for (Animal animal : animals) {
             map.put(animal.getSpecies(), map.getOrDefault(animal.getSpecies(), 0) + 1);
             avgHappiness += animal.getHappinessStat();
-            if (animal.getHungryStat() < 50) {
+            if (animal.getHungryStat() > 50) {
                 hungryAnimals.add(animal);
             }
             if (animal.getHappinessStat() > topHappyPoint) {
@@ -124,5 +128,9 @@ public class Zoo {
         sb.append("- 가장 행복한 동물: " + happiestAnimal.getSpecies() + "(" + happiestAnimal.getName() + ") " + "- 행복도 "
                 + happiestAnimal.getHappinessStat());
         System.out.println(sb.toString());
+    }
+
+    public ArrayList<Animal> getAnimals() {
+        return animals;
     }
 }

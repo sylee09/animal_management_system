@@ -1,3 +1,5 @@
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -11,9 +13,9 @@ public class Main {
         sc = new Scanner(System.in);
     }
 
-
     private int printOption(Scanner sc) {
         System.out.println("=== 확장된 동물원 관리 시스템 ===");
+        printCurrentRegisteredAnimalInfo();
         System.out.println("1. 동물 등록");
         System.out.println("2. 동물 목록 보기");
         System.out.println("3. 동물과 놀기");
@@ -21,22 +23,42 @@ public class Main {
         System.out.println("5. 특별 능력 사용");
         System.out.println("6. 사육사 관리");
         System.out.println("7. 통계 보기");
-        System.out.println("8. 종료");
+        System.out.println("8. 동물 상태 보기");
+        System.out.println("9. 종료");
         System.out.print("메뉴를 선택하세요: ");
         int op = -1;
         try {
             op = sc.nextInt();
-            if (op < 1 || op > 8) {
+            if (op < 1 || op > 9) {
                 throw new OptionChooseException();
             }
         } catch (OptionChooseException e) {
-            System.out.println("유효한 숫자를 입력해주세요 : 1~8번이 유효");
+            System.out.println("유효한 숫자를 입력해주세요 : 1~9번이 유효");
         } catch (RuntimeException e) {
             System.out.println("숫자를 입력하세요.");
         }finally {
             sc.nextLine();
         }
         return op;
+    }
+
+    private void printCurrentRegisteredAnimalInfo() {
+        int totalAnimals = zoo.getAnimalSize();
+        StringBuilder sb = new StringBuilder();
+        sb.append("현재 등록된 동물: 총 " + totalAnimals + "마리 ");
+        HashMap<String, Integer> map = new HashMap<>();
+        for (Animal animal : zoo.getAnimals()) {
+            map.put(animal.getSpecies(), map.getOrDefault(animal.getName(), 0) + 1);
+        }
+        if (!map.isEmpty()) {
+            sb.append("(");
+            for (Map.Entry<String, Integer> entry : map.entrySet()) {
+                sb.append(entry.getKey() + " " + entry.getValue() + ", ");
+            }
+            sb.delete(sb.length() - 2, sb.length());
+            sb.append(")");
+        }
+        System.out.println(sb);
     }
 
     private void startProgram() {
@@ -63,10 +85,20 @@ public class Main {
                     manageZookeeper();
                     break;
                 case 7:
+                    printStatistics();
+                    break;
+                case 8:
+                    zoo.printAnimalStatus();
+                    break;
+                case 9:
                     flag = true;
                     break;
             }
         }
+    }
+
+    private void printStatistics() {
+        zoo.printStatisticsInfo();
     }
 
     private void manageZookeeper() {
@@ -172,7 +204,7 @@ public class Main {
         }finally {
             sc.nextLine();
         }
-        System.out.print("먹이를 선택하세요: ");
+        System.out.println("먹이를 선택하세요: ");
         Food food = null;
         String option;
         while (food == null) {
@@ -185,7 +217,7 @@ public class Main {
             if (option.equals("meat")) {
                 food = Food.MEAT;
             } else if (option.equals("fish")) {
-                food = Food.MEAT;
+                food = Food.FISH;
             } else if (option.equals("nuts")) {
                 food = Food.NUTS;
             } else if (option.equals("vegetable")) {
