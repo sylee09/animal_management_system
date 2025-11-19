@@ -1,4 +1,4 @@
-public class Animal {
+public abstract class Animal {
 
     // 최대 100, 최소 0
     private int hungryStat;
