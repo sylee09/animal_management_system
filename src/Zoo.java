@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Zoo {
     private ArrayList<Animal> animals = new ArrayList<>();
@@ -59,5 +60,42 @@ public class Zoo {
 
     public void setCurZooKeeper(int idx) {
         this.curZooKeeper = zooKeepers.get(idx);
+    }
+
+    public void printStatisticsInfo() {
+        HashMap<String, Integer> map = new HashMap<>();
+        int totalAnimalCount = animals.size();
+        double avgHappiness = 0;
+        Animal happiestAnimal = null;
+        int topHappyPoint = 0;
+
+        ArrayList<Animal> hungryAnimals = new ArrayList<>();
+        for (Animal animal : animals) {
+            map.put(animal.getSpecies(), map.getOrDefault(animal.getSpecies(), 0) + 1);
+            avgHappiness += animal.getHappinessStat();
+            if (animal.getHungryStat() < 50) {
+                hungryAnimals.add(animal);
+            }
+            if (animal.getHappinessStat() > topHappyPoint) {
+                topHappyPoint = animal.getHappinessStat();
+                happiestAnimal = animal;
+            }
+        }
+        avgHappiness /= totalAnimalCount;
+
+        System.out.println("=== 동물원 통계 ===");
+        System.out.println("- 전체 동물 수: " + totalAnimalCount);
+        System.out.println("- 평균 행복도: " + avgHappiness);
+        StringBuilder sb = new StringBuilder();
+        sb.append("- 배고픈 동물: ");
+        for (Animal animal : hungryAnimals) {
+            sb.append(animal.getSpecies() + "(" + animal.getName() + "), ");
+        }
+        sb.delete(sb.length() - 2, sb.length());
+        System.out.println(sb.toString());
+        sb = new StringBuilder();
+        sb.append("- 가장 행복한 동물: " + happiestAnimal.getSpecies() + "(" + happiestAnimal.getName() + ") " + "- 행복도 "
+                + happiestAnimal.getHappinessStat());
+        System.out.println(sb.toString());
     }
 }
