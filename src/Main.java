@@ -166,7 +166,12 @@ public class Main {
                 food = Food.VEGETABLE;
             }
         }
-        zoo.feedAnimal(idx, food);
+        try {
+            zoo.feedAnimal(idx, food);
+        } catch (RuntimeException e) {
+            System.out.println("동물이 선호하는 먹이가 아닙니다.");
+        }
+
     }
 
     private void printAnimalStatus() {
