@@ -6,8 +6,8 @@
 - 동물 상태 조회 및 관리
 - 콘솔 기반 사용자 인터페이스
 
-2. 클래스 다이어그램
+2. 클래스 다이어그램 (level-1)
    <img src="diagram/diagram.png">
 
 3. 실행방법
-- Main 클래스에서 initProgram을 호출하면 된다.
+- Main 클래스의 startProgram() 함수를 실행하면 된다.
