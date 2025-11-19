@@ -60,13 +60,37 @@ public class Main {
                     useSpecialAbility();
                     break;
                 case 6:
-                    printAnimalSound();
+                    manageZookeeper();
                     break;
                 case 7:
                     flag = true;
                     break;
             }
         }
+    }
+
+    private void manageZookeeper() {
+        for (int i = 1; i <= zoo.getZooKeepers().size(); i++) {
+            System.out.println(i + "번 사육사: " + zoo.getZooKeepers().get(i - 1));
+        }
+        System.out.println("현재 사육사: " + zoo.getCurZooKeeper());
+        System.out.print("바꿀 사육사 번호 입력: ");
+        int op = -1;
+        try {
+            op = sc.nextInt() - 1;
+            if (op < 0 || op >= zoo.getZooKeepers().size()) {
+                throw new OptionChooseException();
+            }
+        } catch (OptionChooseException e) {
+            System.out.println("유효한 숫자를 입력하세요");
+            return;
+        } catch (RuntimeException e) {
+            System.out.println("숫자를 입력하세요.");
+            return;
+        }finally {
+            sc.nextLine();
+        }
+        zoo.setCurZooKeeper(op);
     }
 
     private void registerAnimal() {
@@ -85,15 +109,15 @@ public class Main {
         }finally {
             sc.nextLine();
         }
-        System.out.print("동물 종류를 선택하세요 (1.강아지 2.고양이): ");
+        System.out.print("동물 종류를 선택하세요 (1.강아지 2.고양이 3.독수리 4.펭귄 5.사자 6.코끼리 7.뱀 8.거북이): ");
         int op = 0;
         try {
             op = sc.nextInt();
-            if (op != 1 && op != 2) {
+            if (!(op >= 1 && op <= 8)) {
                 throw new OptionChooseException();
             }
         } catch (OptionChooseException e) {
-            System.out.println("유효한 숫자를 입력하세요 (1.강아지 2.고양이)");
+            System.out.println("유효한 숫자를 입력하세요 (1.강아지 2.고양이 3.독수리 4.펭귄 5.사자 6.코끼리 7.뱀 8.거북이)");
             return;
         } catch (RuntimeException e) {
             System.out.println("숫자를 입력하세요.");
@@ -152,6 +176,7 @@ public class Main {
         Food food = null;
         String option;
         while (food == null) {
+            System.out.print("줄수있는 먹이: ");
             for (Food f : Food.values()) {
                 System.out.print(f.name() + " ");
             }

@@ -12,4 +12,11 @@ public class ZooKeeper {
     public void setSpecialize(String specialize) {
         this.specialize = specialize;
     }
+
+    @Override
+    public String toString() {
+        return "ZooKeeper{" +
+                "specialize='" + specialize + '\'' +
+                '}';
+    }
 }

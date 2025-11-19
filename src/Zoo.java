@@ -20,6 +20,18 @@ public class Zoo {
             animal = new Dog(name, age);
         } else if (option == 2) {
             animal = new Cat(name, age);
+        } else if (option == 3) {
+            animal = new Eagle(name, age);
+        } else if (option == 4) {
+            animal = new Penguin(name, age);
+        } else if (option == 5) {
+            animal = new Lion(name, age);
+        } else if (option == 6) {
+            animal = new Elephant(name, age);
+        } else if (option == 7) {
+            animal = new Snake(name, age);
+        } else if (option == 8) {
+            animal = new Turtle(name, age);
         }
         animals.add(animal);
         return animal;
@@ -35,7 +47,7 @@ public class Zoo {
     public void printAnimalAbilityList() {
         for (int idx = 1; idx <= animals.size(); idx++) {
             System.out.println(idx + ". " + animals.get(idx - 1).getName() + "(" + animals.get(idx - 1).getSpecies() + " - "
-                    + animals.get(idx - 1).specialAbilityName() + "능력");
+                    + animals.get(idx - 1).specialAbilityName() + "능력)");
         }
     }
 
@@ -71,6 +83,10 @@ public class Zoo {
 
     public void setCurZooKeeper(int idx) {
         this.curZooKeeper = zooKeepers.get(idx);
+    }
+
+    public ArrayList<ZooKeeper> getZooKeepers() {
+        return zooKeepers;
     }
 
     public void printStatisticsInfo() {
