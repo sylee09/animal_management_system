@@ -4,6 +4,7 @@ public class Penguin extends Bird implements Swimmable {
     public Penguin(String name, int age) {
         super(name, age);
         this.species = "펭귄";
+        setFavoriteFood(Food.FISH);
     }
 
     @Override

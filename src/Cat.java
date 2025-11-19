@@ -4,6 +4,7 @@ public class Cat extends Mammal {
     public Cat(String name, int age) {
         super(name, age);
         species = "고양이";
+        setFavoriteFood(Food.FISH);
     }
 
     public String getSpecies() {

@@ -4,6 +4,7 @@ public class Eagle extends Bird implements Flyable {
     public Eagle(String name, int age) {
         super(name, age);
         this.species = "독수리";
+        setFavoriteFood(Food.MEAT);
     }
 
     @Override

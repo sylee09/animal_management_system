@@ -4,6 +4,7 @@ public class Lion extends Mammal {
     public Lion(String name, int age) {
         super(name, age);
         this.species = "사자";
+        setFavoriteFood(Food.MEAT);
     }
 
     @Override

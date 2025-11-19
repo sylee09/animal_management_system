@@ -4,6 +4,7 @@ public class Elephant extends Mammal implements Sprayable {
     public Elephant(String name, int age) {
         super(name, age);
         this.species = "코끼리";
+        setFavoriteFood(Food.VEGETABLE);
     }
 
     @Override

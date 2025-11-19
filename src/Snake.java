@@ -4,6 +4,7 @@ public class Snake extends Reptile {
     public Snake(String name, int age) {
         super(name, age);
         this.species = "뱀";
+        setFavoriteFood(Food.NUTS);
     }
 
     @Override

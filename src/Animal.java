@@ -7,9 +7,7 @@ public abstract class Animal {
     private String name;
     private int age;
     private String species;
-
-    public Animal() {
-    }
+    private Food favoriteFood;
 
     public Animal(String name, int age) {
         this(100, 0, name, age);
@@ -77,6 +75,14 @@ public abstract class Animal {
 
     public void setSpecies(String species) {
         this.species = species;
+    }
+
+    public Food getFavoriteFood() {
+        return favoriteFood;
+    }
+
+    public void setFavoriteFood(Food favoriteFood) {
+        this.favoriteFood = favoriteFood;
     }
 
     @Override

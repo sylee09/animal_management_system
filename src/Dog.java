@@ -4,6 +4,7 @@ public class Dog extends Mammal {
     public Dog(String name, int age) {
         super(name, age);
         this.species = "강아지";
+        setFavoriteFood(Food.MEAT);
     }
 
     public String getSpecies() {
