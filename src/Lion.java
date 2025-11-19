@@ -1,4 +1,4 @@
-public class Lion extends Mammal {
+public class Lion extends Mammal implements Hunting{
     private String species;
 
     public Lion(String name, int age) {
@@ -9,13 +9,16 @@ public class Lion extends Mammal {
 
     @Override
     public void play(ZooKeeper zooKeeper) {
+        System.out.println(zooKeeper.getSpecialize() + " 전문 사육사가 " + getName() + "과 놀아줍니다.");
+
         if (zooKeeper.getSpecialize().equals("Mammal")) {
-            System.out.println("포유류 전문 사육사가 " + getName() + "과 놀아줍니다.");
             int newHappinessStat = getHappinessStat() + 5;
             newHappinessStat = Math.min(100, newHappinessStat);
             setHappinessStat(newHappinessStat);
         } else {
-            super.play(zooKeeper);
+            int newHappinessStat = getHappinessStat() + 1;
+            newHappinessStat = Math.min(100, newHappinessStat);
+            setHappinessStat(newHappinessStat);
         }
     }
 
@@ -24,14 +27,33 @@ public class Lion extends Mammal {
         if (this.getFavoriteFood() != food) {
             throw new RuntimeException();
         }
+        System.out.println(zooKeeper.getSpecialize() + " 전문 사육사가 " + getName() + "에게 " + food.name() + "를 줍니다.");
         if (zooKeeper.getSpecialize().equals("Mammal")) {
-            System.out.println("포유류 전문 사육사가 " + getName() + "에게 "+food.name()+"를 줍니다.");
             int newHungryStat = getHungryStat() - 5;
             newHungryStat = Math.max(0, newHungryStat);
             setHungryStat(newHungryStat);
         } else {
-            super.feed(zooKeeper, food);
+            int newHungryStat = getHungryStat() - 1;
+            newHungryStat = Math.max(0, newHungryStat);
+            setHungryStat(newHungryStat);
         }
+    }
+
+    @Override
+    public String specialAbilityName() {
+        return "사냥";
+    }
+
+    @Override
+    public void performSpecialAbility() {
+        hunt();
+    }
+
+    @Override
+    public void hunt() {
+        System.out.println(getName() + "가 사냥을 합니다! 행복도가 크게 증가했습니다.");
+        int newHappinessStat = Math.min(100, getHappinessStat() + 10);
+        setHappinessStat(newHappinessStat);
     }
 
     @Override

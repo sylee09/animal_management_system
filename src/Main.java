@@ -13,23 +13,24 @@ public class Main {
 
 
     private int printOption(Scanner sc) {
-        System.out.println("=== 동물원 관리 시스템 ===");
+        System.out.println("=== 확장된 동물원 관리 시스템 ===");
         System.out.println("1. 동물 등록");
         System.out.println("2. 동물 목록 보기");
         System.out.println("3. 동물과 놀기");
         System.out.println("4. 먹이주기");
-        System.out.println("5. 동물 상태 확인");
-        System.out.println("6. 울음소리 듣기");
-        System.out.println("7. 종료");
+        System.out.println("5. 특별 능력 사용");
+        System.out.println("6. 사육사 관리");
+        System.out.println("7. 통계 보기");
+        System.out.println("8. 종료");
         System.out.print("메뉴를 선택하세요: ");
         int op = -1;
         try {
             op = sc.nextInt();
-            if (op < 1 || op > 7) {
+            if (op < 1 || op > 8) {
                 throw new OptionChooseException();
             }
         } catch (OptionChooseException e) {
-            System.out.println("유효한 숫자를 입력해주세요 : 1~7번이 유효");
+            System.out.println("유효한 숫자를 입력해주세요 : 1~8번이 유효");
         } catch (RuntimeException e) {
             System.out.println("숫자를 입력하세요.");
         }finally {
@@ -56,7 +57,7 @@ public class Main {
                     feedAnimal();
                     break;
                 case 5:
-                    printAnimalStatus();
+                    useSpecialAbility();
                     break;
                 case 6:
                     printAnimalSound();
@@ -197,6 +198,31 @@ public class Main {
             sc.nextLine();
         }
         zoo.printAnimalSound(idx);
+    }
+
+    private void printAnimalAbilityList() {
+        zoo.printAnimalAbilityList();
+    }
+
+    private void useSpecialAbility() {
+        System.out.println("특별 능력을 사용할 동물을 선택하세요: ");
+        printAnimalAbilityList();
+        int idx=-1;
+        try {
+            idx = sc.nextInt() - 1;
+            if (idx >= zoo.getAnimalSize() || idx < 0) {
+                throw new OptionChooseException();
+            }
+        } catch (OptionChooseException e) {
+            System.out.println("유효한 숫자를 입력해주세요");
+            return;
+        } catch (RuntimeException e) {
+            System.out.println("숫자를 입력하세요.");
+            return;
+        }finally {
+            sc.nextLine();
+        }
+        zoo.performSpecialAbility(idx);
     }
 
     public static void main(String[] args) {

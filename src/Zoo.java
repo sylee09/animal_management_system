@@ -32,6 +32,17 @@ public class Zoo {
         }
     }
 
+    public void printAnimalAbilityList() {
+        for (int idx = 1; idx <= animals.size(); idx++) {
+            System.out.println(idx + ". " + animals.get(idx - 1).getName() + "(" + animals.get(idx - 1).getSpecies() + " - "
+                    + animals.get(idx - 1).specialAbilityName() + "능력");
+        }
+    }
+
+    public void performSpecialAbility(int idx) {
+        animals.get(idx).performSpecialAbility();
+    }
+
     public void playWithAnimal(int idx) {
         animals.get(idx).play(curZooKeeper);
     }

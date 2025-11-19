@@ -21,21 +21,15 @@ public abstract class Animal {
         this.species = "animal";
     }
 
-    public void feed(ZooKeeper zooKeeper, Food food) {
-        System.out.println(name + "에게 " + food.name() + "를 줍니다.");
-        hungryStat--;
-        hungryStat = Math.max(hungryStat, 0);
-    }
+    public abstract void feed(ZooKeeper zooKeeper, Food food);
 
-    public void play(ZooKeeper zooKeeper) {
-        System.out.println(name + "과 놀아줍니다.");
-        happinessStat++;
-        happinessStat = Math.min(100, happinessStat);
-    }
+    public abstract void play(ZooKeeper zooKeeper);
 
-    public void sound() {
-        System.out.println(name + "이 소리를 냅니다.");
-    }
+    public abstract void sound();
+
+    public abstract String specialAbilityName();
+
+    public abstract void performSpecialAbility();
 
     public int getHungryStat() {
         return hungryStat;

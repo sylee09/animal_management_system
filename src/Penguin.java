@@ -9,13 +9,16 @@ public class Penguin extends Bird implements Swimmable {
 
     @Override
     public void play(ZooKeeper zooKeeper) {
+        System.out.println(zooKeeper.getSpecialize() + " 전문 사육사가 " + getName() + "과 놀아줍니다.");
+
         if (zooKeeper.getSpecialize().equals("Bird")) {
-            System.out.println("조류 전문 사육사가 " + getName() + "과 놀아줍니다.");
             int newHappinessStat = getHappinessStat() + 5;
             newHappinessStat = Math.min(100, newHappinessStat);
             setHappinessStat(newHappinessStat);
         } else {
-            super.play(zooKeeper);
+            int newHappinessStat = getHappinessStat() + 1;
+            newHappinessStat = Math.min(100, newHappinessStat);
+            setHappinessStat(newHappinessStat);
         }
     }
 
@@ -24,14 +27,31 @@ public class Penguin extends Bird implements Swimmable {
         if (this.getFavoriteFood() != food) {
             throw new RuntimeException();
         }
+        System.out.println(zooKeeper.getSpecialize() + " 전문 사육사가 " + getName() + "에게 " + food.name() + "를 줍니다.");
         if (zooKeeper.getSpecialize().equals("Bird")) {
-            System.out.println("조류 전문 사육사가 " + getName() + "에게 "+food.name()+"를 줍니다.");
             int newHungryStat = getHungryStat() - 5;
             newHungryStat = Math.max(0, newHungryStat);
             setHungryStat(newHungryStat);
         } else {
-            super.feed(zooKeeper, food);
+            int newHungryStat = getHungryStat() - 1;
+            newHungryStat = Math.max(0, newHungryStat);
+            setHungryStat(newHungryStat);
         }
+    }
+
+    @Override
+    public void sound() {
+        System.out.println(getName() + "가 끼룩하고 소리를 냅니다.");
+    }
+
+    @Override
+    public String specialAbilityName() {
+        return "수영";
+    }
+
+    @Override
+    public void performSpecialAbility() {
+        swim();
     }
 
     @Override
@@ -49,11 +69,6 @@ public class Penguin extends Bird implements Swimmable {
         System.out.println(getName() + "가 헤엄을 칩니다! 행복도가 크게 증가했습니다.");
         int newHappinessStat = Math.min(100, getHappinessStat() + 10);
         setHappinessStat(newHappinessStat);    }
-
-    @Override
-    public void sound() {
-        System.out.println(getName() + "가 끼룩하고 소리를 냅니다.");
-    }
 
     @Override
     public String toString() {
