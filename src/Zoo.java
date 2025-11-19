@@ -2,6 +2,16 @@ import java.util.ArrayList;
 
 public class Zoo {
     private ArrayList<Animal> animals = new ArrayList<>();
+    private ArrayList<ZooKeeper> zooKeepers = new ArrayList<>();
+    private ZooKeeper curZooKeeper;
+
+    public Zoo() {
+        zooKeepers.add(new ZooKeeper("No Speciality"));
+        zooKeepers.add(new ZooKeeper("Bird"));
+        zooKeepers.add(new ZooKeeper("Mammal"));
+        zooKeepers.add(new ZooKeeper("Reptile"));
+        curZooKeeper = zooKeepers.get(0);
+    }
 
     public Animal registerAnimal(int option, String name, int age) {
         Animal animal = null;
@@ -22,11 +32,11 @@ public class Zoo {
     }
 
     public void playWithAnimal(int idx) {
-        animals.get(idx).play();
+        animals.get(idx).play(curZooKeeper);
     }
 
     public void feedAnimal(int idx) {
-        animals.get(idx).feed();
+        animals.get(idx).feed(curZooKeeper);
     }
 
     public void printAnimalStatus() {
@@ -41,5 +51,13 @@ public class Zoo {
 
     public int getAnimalSize() {
         return animals.size();
+    }
+
+    public ZooKeeper getCurZooKeeper() {
+        return curZooKeeper;
+    }
+
+    public void setCurZooKeeper(int idx) {
+        this.curZooKeeper = zooKeepers.get(idx);
     }
 }

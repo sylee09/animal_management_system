@@ -8,6 +8,30 @@ public class Eagle extends Bird implements Flyable {
     }
 
     @Override
+    public void play(ZooKeeper zooKeeper) {
+        if (zooKeeper.getSpecialize().equals("Bird")) {
+            System.out.println("조류 전문 사육사가 " + getName() + "과 놀아줍니다.");
+            int newHappinessStat = getHappinessStat() + 5;
+            newHappinessStat = Math.min(100, newHappinessStat);
+            setHappinessStat(newHappinessStat);
+        } else {
+            super.play(zooKeeper);
+        }
+    }
+
+    @Override
+    public void feed(ZooKeeper zooKeeper) {
+        if (zooKeeper.getSpecialize().equals("Bird")) {
+            System.out.println("조류 전문 사육사가 " + getName() + "에게 먹이를 줍니다.");
+            int newHungryStat = getHungryStat() - 5;
+            newHungryStat = Math.max(0, newHungryStat);
+            setHungryStat(newHungryStat);
+        } else {
+            super.feed(zooKeeper);
+        }
+    }
+
+    @Override
     public String getSpecies() {
         return species;
     }

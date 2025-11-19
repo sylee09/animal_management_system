@@ -21,13 +21,13 @@ public abstract class Animal {
         this.species = "animal";
     }
 
-    public void feed() {
+    public void feed(ZooKeeper zooKeeper) {
         System.out.println(name + "에게 먹이를 줍니다.");
         hungryStat--;
         hungryStat = Math.max(hungryStat, 0);
     }
 
-    public void play() {
+    public void play(ZooKeeper zooKeeper) {
         System.out.println(name + "과 놀아줍니다.");
         happinessStat++;
         happinessStat = Math.min(100, happinessStat);
