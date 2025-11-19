@@ -35,8 +35,8 @@ public class Zoo {
         animals.get(idx).play(curZooKeeper);
     }
 
-    public void feedAnimal(int idx) {
-        animals.get(idx).feed(curZooKeeper);
+    public void feedAnimal(int idx, Food food) {
+        animals.get(idx).feed(curZooKeeper, food);
     }
 
     public void printAnimalStatus() {

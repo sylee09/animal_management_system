@@ -147,7 +147,26 @@ public class Main {
         }finally {
             sc.nextLine();
         }
-        zoo.feedAnimal(idx);
+        System.out.print("먹이를 선택하세요: ");
+        Food food = null;
+        String option;
+        while (food == null) {
+            for (Food f : Food.values()) {
+                System.out.print(f.name() + " ");
+            }
+            option = sc.nextLine();
+            option = option.toLowerCase();
+            if (option.equals("meat")) {
+                food = Food.MEAT;
+            } else if (option.equals("fish")) {
+                food = Food.MEAT;
+            } else if (option.equals("nuts")) {
+                food = Food.NUTS;
+            } else if (option.equals("vegetable")) {
+                food = Food.VEGETABLE;
+            }
+        }
+        zoo.feedAnimal(idx, food);
     }
 
     private void printAnimalStatus() {

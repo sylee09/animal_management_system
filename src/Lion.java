@@ -20,14 +20,17 @@ public class Lion extends Mammal {
     }
 
     @Override
-    public void feed(ZooKeeper zooKeeper) {
+    public void feed(ZooKeeper zooKeeper, Food food) {
+        if (this.getFavoriteFood() != food) {
+            throw new RuntimeException();
+        }
         if (zooKeeper.getSpecialize().equals("Mammal")) {
-            System.out.println("포유류 전문 사육사가 " + getName() + "에게 먹이를 줍니다.");
+            System.out.println("포유류 전문 사육사가 " + getName() + "에게 "+food.name()+"를 줍니다.");
             int newHungryStat = getHungryStat() - 5;
             newHungryStat = Math.max(0, newHungryStat);
             setHungryStat(newHungryStat);
         } else {
-            super.feed(zooKeeper);
+            super.feed(zooKeeper, food);
         }
     }
 

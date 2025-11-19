@@ -21,8 +21,8 @@ public abstract class Animal {
         this.species = "animal";
     }
 
-    public void feed(ZooKeeper zooKeeper) {
-        System.out.println(name + "에게 먹이를 줍니다.");
+    public void feed(ZooKeeper zooKeeper, Food food) {
+        System.out.println(name + "에게 " + food.name() + "를 줍니다.");
         hungryStat--;
         hungryStat = Math.max(hungryStat, 0);
     }
